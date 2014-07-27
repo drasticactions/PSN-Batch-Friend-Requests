@@ -1,0 +1,18 @@
+extends layout
+
+block content
+	.jumbotron
+		h1 「失敗」
+		p This is how you write "GOON" in Japanese.
+		p - Drastic Actions
+		a(href="http://twitter.com/drasticactionsa") @drasticactionsa
+	.panel.panel-default
+		.panel-body
+			include messages
+			form.form-horizontal(id="login", action="/login", method="post")
+				.form-group
+					input.form-control(type="text", placeholder="PSN Email Address", name="user")
+				.form-group
+					input.form-control(type="password", placeholder="Password", name="pass")
+				.form-group
+					input.form-control(type="submit", value="Login")

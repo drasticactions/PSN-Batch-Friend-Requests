@@ -1,0 +1,41 @@
+extends layout
+
+block script
+	script(type='text/javascript').
+		$(document).ready(function() {
+			console.log( "ready!" );
+			$('#requestMessage').bind('input propertychange', function() {
+				$('#sendUserNameButton').attr('disabled', true)
+				if(this.value.length){
+					$('#sendUserNameButton').attr('disabled', false)
+				}
+			});
+		});
+
+block content
+	.panel.panel-default
+		.panel-body
+			.row.row-ending
+				label.col-md-3.control-label Enter Usernames
+				.col-md-9
+					textarea.form-control(id="usernameTextarea" rows="10")
+			.row.row-ending
+				.col-md-12
+					input.form-control(type="submit", onclick="checkUsernames();" value="Parse Entered Usernames")
+			.row.row-ending
+				label.col-md-3.control-label Parsed Usernames
+				.col-md-9
+					select.form-control(size="10" id="parsedUsernames")
+			.row.row-ending
+				label.col-md-3.control-label Request Message
+				.col-md-9
+					textarea.form-control(id="requestMessage" rows="10")
+			.row.row-ending
+				.col-md-12
+					input.form-control(id="sendUserNameButton", type="submit", disabled="disabled", onclick="sendUsernames();" value="Send usernames")
+			.row.row-ending
+				progress.form-control(id="progressBar" value="0" max="1")
+			.row.row-ending
+				label.col-md-3.control-label Console
+				.col-md-9
+					select.form-control(size="10" id="loadingConsole")
